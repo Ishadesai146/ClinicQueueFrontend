@@ -1,0 +1,44 @@
+﻿@model ClinicQueueFrontend.Models.CreateUserModel
+
+<h2 class="mb-4">Create User</h2>
+
+<div class="card col-md-6 shadow">
+
+	<div class="card-body">
+
+		<form method="post">
+
+			<div class="mb-3">
+				<label>Name</label>
+				<input class="form-control" asp-for="name" required />
+			</div>
+
+			<div class="mb-3">
+				<label>Email</label>
+				<input class="form-control" asp-for="email" required />
+			</div>
+
+			<div class="mb-3">
+				<label>Password</label>
+				<input type="password" class="form-control" asp-for="password" required />
+			</div>
+
+			<div class="mb-3">
+				<label>Role</label>
+				<select class="form-control" asp-for="role">
+					<option value="doctor">Doctor</option>
+					<option value="receptionist">Receptionist</option>
+					<option value="patient">Patient</option>
+				</select>
+			</div>
+
+			<button class="btn btn-success">Create User</button>
+			<button class="btn btn-danger btn-sm">Delete</button>
+
+		</form>
+
+		<p class="text-danger mt-2">@ViewBag.msg</p>
+
+	</div>
+
+</div>

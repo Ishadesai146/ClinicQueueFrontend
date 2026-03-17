@@ -1,0 +1,55 @@
+@model ClinicQueueFrontend.Models.DashboardViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var role = HttpContextAccessor.HttpContext.Session.GetString("role");
+}
+
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row">
+
+	<div class="col-md-4 mb-3">
+		<div class="card shadow text-center h-100">
+			<div class="card-body d-flex flex-column justify-content-center">
+				<h5>@((role == "admin" || role == "receptionist") ? "Total Queue Tokens" : "Total Appointments")</h5>
+				<h2 class="text-primary">@Model.TotalAppointments</h2>
+			</div>
+		</div>
+	</div>
+
+    @if (role != "doctor" && role != "receptionist" && role != "admin")
+    {
+	    <div class="col-md-4 mb-3">
+		    <div class="card shadow text-center h-100">
+			    <div class="card-body d-flex flex-column justify-content-center">
+				    <h5>Total Prescriptions</h5>
+				    <h2 class="text-success">@Model.TotalPrescriptions</h2>
+			    </div>
+		    </div>
+	    </div>
+
+	    <div class="col-md-4 mb-3">
+		    <div class="card shadow text-center h-100">
+			    <div class="card-body d-flex flex-column justify-content-center">
+				    <h5>Total Reports</h5>
+				    <h2 class="text-warning">@Model.TotalReports</h2>
+			    </div>
+		    </div>
+	    </div>
+    }
+
+    @if (role == "admin")
+    {
+        <div class="col-md-4 mb-3">
+		    <div class="card shadow text-center h-100">
+			    <div class="card-body d-flex flex-column justify-content-center">
+				    <h5>Total Users</h5>
+				    <h2 class="text-info">@Model.TotalUsers</h2>
+			    </div>
+		    </div>
+	    </div>
+    }
+
+</div>

@@ -1,0 +1,65 @@
+@model ClinicQueueFrontend.Models.Appointment
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">Appointment Details</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Date:</strong> @Model.appointmentDate</p>
+                <p><strong>Time Slot:</strong> @Model.timeSlot</p>
+                <p><strong>Status:</strong> @Model.status</p>
+                @if (Model.queueEntry != null)
+                {
+                    <p><strong>Token Number:</strong> @Model.queueEntry.tokenNumber</p>
+                    <p><strong>Queue Status:</strong> @Model.queueEntry.status</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="card-title mb-0">Prescription</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.prescription != null)
+                {
+                    <p><strong>Doctor:</strong> @Model.prescription.doctor</p>
+                    <p><strong>Notes:</strong> @Model.prescription.notes</p>
+                }
+                else
+                {
+                    <p class="text-muted">No prescription available yet.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="card-title mb-0">Medical Report</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.report != null)
+                {
+                    <p><strong>Doctor:</strong> @Model.report.doctor</p>
+                    <p><strong>Diagnosis:</strong> @Model.report.diagnosis</p>
+                    <p><strong>Tests Recommended:</strong> @Model.report.testRecommended</p>
+                    <p><strong>Remarks:</strong> @Model.report.remarks</p>
+                }
+                else
+                {
+                    <p class="text-muted">No report available yet.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<a asp-action="MyAppointments" class="btn btn-secondary">Back to My Appointments</a>

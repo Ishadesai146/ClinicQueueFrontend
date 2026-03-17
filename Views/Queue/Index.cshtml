@@ -1,0 +1,63 @@
+@model List<ClinicQueueFrontend.Models.QueueModel>
+
+<h2 class="mb-4">Today's Queue</h2>
+
+<div class="card shadow">
+    <div class="card-body">
+
+        <table class="table table-bordered">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>Token</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var q in Model)
+                {
+                    <tr>
+                        <td class="align-middle fw-bold">@q.tokenNumber</td>
+                        <td class="align-middle">
+                            @if(q.status == "waiting") { <span class="badge bg-secondary">Waiting</span> }
+                            else if(q.status == "in_progress") { <span class="badge bg-primary">In Progress</span> }
+                            else if(q.status == "done") { <span class="badge bg-success">Done</span> }
+                            else if(q.status == "skipped") { <span class="badge bg-warning text-dark">Skipped</span> }
+                            else { <span class="badge bg-light text-dark">@q.status</span> }
+                        </td>
+                        <td class="align-middle">
+                            @{ 
+                                var pd = DateTime.TryParse(q.queueDate, out var dt) ? dt.ToString("MMM dd, yyyy") : q.queueDate;
+                            }
+                            @pd
+                        </td>
+
+                        <td>
+                            <form method="post" asp-action="UpdateStatus" class="d-flex align-items-center gap-2">
+                                <input type="hidden" name="id" value="@q.id" />
+                                <select name="status" class="form-select form-select-sm" style="width: 140px;">
+                                    <option value="in_progress">In Progress</option>
+                                    <option value="done">Done</option>
+                                    <option value="skipped">Skipped</option>
+                                </select>
+                                <button class="btn btn-primary btn-sm">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+        @if (!Model.Any())
+        {
+            <p class="text-danger mt-3">No queue data available</p>
+        }
+
+    </div>
+</div>

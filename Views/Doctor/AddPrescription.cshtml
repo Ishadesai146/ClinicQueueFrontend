@@ -1,0 +1,45 @@
+@model ClinicQueueFrontend.Models.AddPrescriptionModel
+
+<div class="card shadow" style="max-width: 600px; margin: auto;">
+    <div class="card-header bg-success text-white">
+        <h4 class="mb-0">Add Prescription</h4>
+    </div>
+    <div class="card-body">
+        <form method="post" asp-action="AddPrescription">
+            <input type="hidden" asp-for="appointmentId" />
+            
+            <h5 class="mt-2 mb-3">Medicine Details</h5>
+            <div class="mb-3">
+                <label class="form-label">Medicine Name *</label>
+                <input type="text" name="medicines[0].name" class="form-control" required />
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Dosage *</label>
+                <input type="text" name="medicines[0].dosage" class="form-control" placeholder="e.g. 500mg" required />
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Duration *</label>
+                <input type="text" name="medicines[0].duration" class="form-control" placeholder="e.g. 5 days" required />
+            </div>
+
+            <hr />
+
+            <div class="mb-3">
+                <label class="form-label">Additional Notes</label>
+                <textarea asp-for="notes" class="form-control" rows="3" placeholder="Enter any extra instructions here..."></textarea>
+            </div>
+
+            @if (ViewBag.msg != null)
+            {
+                <div class="alert alert-danger">@ViewBag.msg</div>
+            }
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Save Prescription</button>
+                <a asp-action="Queue" class="btn btn-secondary ms-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

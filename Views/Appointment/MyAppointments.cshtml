@@ -1,0 +1,41 @@
+@model List<ClinicQueueFrontend.Models.Appointment>
+
+<h2 class="mb-3">My Appointments</h2>
+<table class="table table-bordered table-striped">
+	<thead class="table-dark">
+		<tr>
+			<th>ID</th>
+			<th>Date</th>
+            <th>Time Slot</th>
+			<th>Status</th>
+			<th>Token</th>
+            <th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var a in Model)
+		{
+			<tr>
+				<td class="align-middle fw-bold">@a.id</td>
+                <td class="align-middle">
+                    @{ 
+                        var pd = DateTime.TryParse(a.appointmentDate, out var dt) ? dt.ToString("MMM dd, yyyy") : a.appointmentDate;
+                    }
+                    @pd
+                </td>
+                <td class="align-middle">@a.timeSlot</td>
+				<td class="align-middle">
+                    @if(a.status == "created" || a.status == "scheduled") { <span class="badge bg-secondary">@a.status</span> }
+                    else if(a.status == "in_progress") { <span class="badge bg-primary">In Progress</span> }
+                    else { <span class="badge bg-light text-dark">@a.status</span> }
+                </td>
+				<td class="align-middle fw-bold text-secondary">
+                    @(a.queueEntry != null ? a.queueEntry.tokenNumber.ToString() : "N/A")
+                </td>
+                <td class="align-middle">
+                    <a asp-action="Details" asp-route-id="@a.id" class="btn btn-sm btn-info text-white"><i class="bi bi-info-circle"></i> Details</a>
+                </td>
+			</tr>
+		}
+	</tbody>
+</table>

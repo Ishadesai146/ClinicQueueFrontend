@@ -1,0 +1,56 @@
+@model List<ClinicQueueFrontend.Models.PrescriptionModel>
+
+<h2 class="mb-4">My Prescriptions</h2>
+
+<div class="card shadow">
+
+	<div class="card-body">
+
+		<table class="table table-striped table-bordered">
+
+			<thead class="table-dark">
+				<tr>
+					<th>ID</th>
+					<th>Doctor</th>
+					<th>Medicine & Notes</th>
+					<th>Appt ID</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				@foreach (var p in Model)
+				{
+					<tr>
+						<td class="align-middle fw-bold">@p.id</td>
+						<td class="align-middle">
+                            @if(p.doctor != null) {
+                                <span>@p.doctor.name</span><br/>
+                                <small class="text-muted">@p.doctor.phone</small>
+                            } else {
+                                <span>N/A</span>
+                            }
+                        </td>
+						<td class="align-middle">
+                            <ul class="list-unstyled mb-0">
+                            @if(p.medicines != null && p.medicines.Any()) {
+                                foreach(var med in p.medicines) {
+                                    <li><strong>@med.name</strong> - @med.dosage (@med.duration)</li>
+                                }
+                            } else {
+                                <li>No medicines</li>
+                            }
+                            </ul>
+                            <div class="mt-2 text-muted fst-italic"><small>@p.notes</small></div>
+                        </td>
+						<td class="align-middle">@p.appointmentId</td>
+					</tr>
+				}
+
+			</tbody>
+
+		</table>
+
+	</div>
+
+</div>

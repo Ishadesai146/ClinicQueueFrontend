@@ -1,0 +1,38 @@
+﻿@model List<ClinicQueueFrontend.Models.UserModel>
+
+<h2 class="mb-4">Users</h2>
+
+<div class="card shadow">
+
+	<div class="card-body">
+
+		<table class="table table-striped table-bordered">
+
+			<thead class="table-dark">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Role</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				@foreach (var u in Model)
+				{
+					<tr>
+						<td>@u.id</td>
+						<td>@u.name</td>
+						<td>@u.email</td>
+						<td>@u.role</td>
+					</tr>
+				}
+
+			</tbody>
+
+		</table>
+
+	</div>
+
+</div>

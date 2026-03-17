@@ -1,0 +1,33 @@
+@model List<ClinicQueueFrontend.Models.ReportModel>
+
+<h2 class="mb-3">My Reports</h2>
+<table class="table table-bordered table-striped">
+	<thead class="table-dark">
+		<tr>
+			<th>ID</th>
+			<th>Doctor</th>
+			<th>Diagnosis</th>
+			<th>Tests Recommended</th>
+            <th>Remarks</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var r in Model)
+		{
+			<tr>
+				<td class="align-middle fw-bold">@r.id</td>
+				<td class="align-middle">
+                    @if(r.doctor != null) {
+                        <span>@r.doctor.name</span><br/>
+                        <small class="text-muted">@r.doctor.phone</small>
+                    } else {
+                        <span>N/A</span>
+                    }
+                </td>
+				<td class="align-middle">@r.diagnosis</td>
+				<td class="align-middle">@r.testRecommended</td>
+                <td class="align-middle">@r.remarks</td>
+			</tr>
+		}
+	</tbody>
+</table>

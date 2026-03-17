@@ -1,0 +1,33 @@
+﻿@model ClinicQueueFrontend.Models.BookAppointmentModel
+
+<h2 class="mb-4">Book Appointment</h2>
+
+<div class="card col-md-6 shadow">
+
+	<div class="card-body">
+
+        <form method="post">
+
+            <div class="mb-3">
+                <label>Date</label>
+                <input type="date" name="appointmentDate" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label>Time Slot</label>
+                <select name="timeSlot" class="form-control" required>
+                    <option value="10:00-10:15">10:00 - 10:15</option>
+                    <option value="10:15-10:30">10:15 - 10:30</option>
+                    <option value="10:30-10:45">10:30 - 10:45</option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary">Book Appointment</button>
+
+        </form>
+
+		<p class="text-danger mt-2">@ViewBag.msg</p>
+
+	</div>
+
+</div>

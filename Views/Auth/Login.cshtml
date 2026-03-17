@@ -1,0 +1,71 @@
+﻿@model ClinicQueueFrontend.Models.LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Clinic Login</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+
+        <div class="row justify-content-center align-items-center" style="height:100vh">
+
+            <div class="col-md-4">
+
+                <div class="card shadow">
+
+                    <div class="card-header bg-primary text-white text-center">
+
+                        <h4>Clinic Login</h4>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <form method="post">
+
+                            <div class="mb-3">
+
+                                <label>Email</label>
+
+                                <input class="form-control" asp-for="email">
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label>Password</label>
+
+                                <input type="password" class="form-control" asp-for="password">
+
+                            </div>
+
+                            <button class="btn btn-primary w-100">Login</button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+﻿@model ClinicQueueFrontend.Models.ClinicModel
+
+<h2 class="mb-4">Clinic Info</h2>
+
+<div class="card shadow col-md-6">
+
+	<div class="card-body">
+
+		<table class="table table-bordered">
+
+			<tr>
+				<th>Clinic Name</th>
+				<td>@Model.name</td>
+			</tr>
+
+			<tr>
+				<th>Clinic Code</th>
+				<td>@Model.code</td>
+			</tr>
+
+			<tr>
+				<th>Users</th>
+				<td>@Model.userCount</td>
+			</tr>
+
+			<tr>
+				<th>Total Appointments</th>
+				<td>@Model.appointmentCount</td>
+			</tr>
+
+			<tr>
+				<th>Queue Count</th>
+				<td>@Model.queueCount</td>
+			</tr>
+
+			<tr>
+				<th>Created At</th>
+				<td>@Model.createdAt</td>
+			</tr>
+
+		</table>
+
+	</div>
+
+</div>

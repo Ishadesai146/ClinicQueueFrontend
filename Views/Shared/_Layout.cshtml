@@ -1,0 +1,134 @@
+@{
+    var role = Context.Session.GetString("role");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ClinicQueueFrontend</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+</head>
+<body>
+
+    <div class="d-flex">
+
+        <!-- Sidebar -->
+        <div class="bg-dark text-white p-3" style="width:250px; min-height:100vh;">
+
+            <h4 class="text-center mb-4">Clinic CMS</h4>
+
+            <div class="text-center mb-3">
+                <small>Logged in as</small><br />
+                <strong>@role?.ToUpper()</strong>
+            </div>
+
+            <ul class="nav flex-column">
+
+               
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="/Auth/Dashboard">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                </li>
+
+            
+                @if (role == "patient")
+                {
+                    <li class="nav-item mb-2">
+                        <a class="nav-link text-white" href="/Appointment/Book">
+                            <i class="bi bi-plus-circle"></i> Book Appointment
+                        </a>
+                    </li>
+                }
+
+               
+                @if (role == "patient")
+                {
+                    <li class="nav-item mb-2">
+                        <a class="nav-link text-white" href="/Appointment/MyAppointments">
+                            <i class="bi bi-calendar-check"></i> My Appointments
+                        </a>
+                    </li>
+                }
+
+               
+                @if (role == "patient")
+                {
+                    <li class="nav-item mb-2">
+                        <a class="nav-link text-white" href="/Prescription/My">
+                            <i class="bi bi-file-medical"></i> Prescriptions
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link text-white" href="/Report/My">
+                            <i class="bi bi-file-earmark-medical"></i> Reports
+                        </a>
+                    </li>
+                }
+
+                
+                @if (role == "admin")
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Admin/Clinic">
+                            <i class="bi bi-building"></i> Clinic
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Admin/Users">
+                            <i class="bi bi-people"></i> Users
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Admin/CreateUser">
+                            <i class="bi bi-person-plus"></i> Create User
+                        </a>
+                    </li>
+                }
+
+                @if (role == "doctor")
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Doctor/Queue">
+                            <i class="bi bi-person-badge"></i> Doctor Queue
+                        </a>
+                    </li>
+                }
+
+                @if (role == "receptionist")
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Queue/Index">
+                            <i class="bi bi-list"></i> Queue
+                        </a>
+                    </li>
+                }
+               
+                <li class="nav-item mt-4">
+                    <a class="nav-link text-danger" href="/Auth/Login">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+       
+        <div class="flex-grow-1 p-4">
+            @RenderBody()
+        </div>
+
+    </div>
+
+</body>
+</html>
